@@ -3,23 +3,28 @@ avcaesar-api-python-driver
 
 Python & OS Support
 -------------------
-avcaesar_api works with python 3.
-avcaesar_api works on Unix/Linux, OS X, and Windows.
+
+avcaesar\_api works with python 3.
+avcaesar\_api works on Unix/Linux, OS X, and Windows.
+
 Installation
 ------------
-If you have installed pip3, you can install with `pip3-2 install avcaesar_api` (The command name for pip3 depends of your python installation).
+
+If you have installed pip3, you can install with `pip-3.2 install avcaesar_api` (The command name for pip depends of your python installation).
 Otherwise you can install from the project source by downloading it and do `python3 setup.py install`.
+
 Configuration
 -------------
+
 To configure your API key, create a new file `~/.avcaesar_api.cfg` in your home directory with the following content:
 
     [api]
     key=YOUR_API_KEY
 
-Usage
------
+Command line usage
+------------------
 
-    usage: avcaesar [-h]
+    usage: avcaesar.py [-h]
                     (-c hash [hash ...] | -u file [file ...] | -d reference [reference ...] | -i reference [reference ...] | --update reference [reference ...] | -r reference [reference ...] | --analysis-history | --is-authenticated | --quota)
                     [--private] [--page PAGE] [--per-page PER_PAGE]
                     [--api-key API_KEY] [--api-url API_URL]
@@ -50,3 +55,12 @@ Usage
       --api-server-cert API_SERVER_CERT
                             Specify the api server cert.
       --version             show program's version number and exit
+
+Library usage
+-------------
+Make a connection to AVCaesar API.
+
+    import avcaesar_api
+    conn = avcaesar_api.Connector(key=YOUR_API_KEY, **avcaesar_api.config_malware_lu)
+
+You can see an example of library usage in the script avcaesar.py.
