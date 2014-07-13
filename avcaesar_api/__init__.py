@@ -15,10 +15,10 @@ from distutils.version import StrictVersion
 if StrictVersion(requests.__version__) < StrictVersion('1.0.0'):
     raise ImportError('The version of the requests library should be 1.0.0 or higher')
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 config_malware_lu = {
     'url': "https://avcaesar.malware.lu/api",
-    'server_cert': os.path.normpath(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'malware_lu.crt'))
+    'server_cert': None
 }
 
 
