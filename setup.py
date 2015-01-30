@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='avcaesar_api',
-    version='1.0.2',
+    version='1.0.3',
     description='library and tool for AVCaesar API',
     author='Stéphane Emma',
     author_email='stephane@malware.lu',
@@ -12,7 +12,7 @@ setup(
     keywords=["avcaesar", "api"],
     packages=['avcaesar_api'],
     include_package_data=True,
-    scripts=['avcaesar.py'],
+    entry_points={'console_scripts': ['avcaesar.py = avcaesar_api.__main__:main']},
     install_requires=["requests>=1.0.0"],
     classifiers=[
         "Environment :: Console",
