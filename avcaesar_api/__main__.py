@@ -8,11 +8,16 @@
 #
 # Script to make request on the AVCaesar API
 
+from __future__ import print_function
+
 from math import ceil
 import os
 import argparse
 import avcaesar_api
-import configparser
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 
 
 def action_check(conn, args):
@@ -194,6 +199,19 @@ def main():
             os.path.join(os.curdir, "avcaesar_api.cfg")
         ]
     )
+
+    default = {}
+    default_items = [
+        ('api-key', ('api', 'key'), None),
+        ('api-url', ('api', 'url'), avcaesar_api.config_malware_lu['url']),
+        ('api-server-cert', ('api', 'server_cert'), avcaesar_api.config_malware_lu['server_cert'])
+    ]
+    for item in default_items:
+        try:
+            default[item[0]] = config.get(*item[1])
+        except (configparser.NoSectionError, configparser.NoOptionError):
+            default[item[0]] = item[2]
+
     parser = argparse.ArgumentParser(description="AVCaesar API tools")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
@@ -284,19 +302,19 @@ def main():
         '--api-key',
         action="store",
         help="Specify the api key.",
-        default=config.get("api", "key", fallback=None)
+        default=default['api-key']
     )
     parser.add_argument(
         '--api-url',
         action="store",
         help="Specify the api url.",
-        default=config.get("api", "url", fallback=avcaesar_api.config_malware_lu['url'])
+        default=default["api-url"]
     )
     parser.add_argument(
         '--api-server-cert',
         action="store",
         help="Specify the api server cert.",
-        default=config.get("api", "server_cert", fallback=avcaesar_api.config_malware_lu['server_cert'])
+        default=default['api-server-cert']
     )
     parser.add_argument(
         '--version',

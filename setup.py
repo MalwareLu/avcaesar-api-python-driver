@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='avcaesar_api',
-    version='1.0.3',
+    version='1.0.4',
     description='library and tool for AVCaesar API',
     author='Stéphane Emma',
     author_email='stephane@malware.lu',
